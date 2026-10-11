@@ -1,8 +1,10 @@
 module Main;
 
 import bibble.Init;
+import bibble.Test;
 
 int main() {
     Init::Init();
-    return Init::Get67();
+    Test::PrintInt(123);
+    return 0;
 }

@@ -1,7 +1,4 @@
 module bibble.Init;
 
-void Init() {}
-
-int Get67() {
-    return 67;
-}
+// Replaced with an intrinsic at runtime. Haven't decided if this will be permanent
+void Init();
