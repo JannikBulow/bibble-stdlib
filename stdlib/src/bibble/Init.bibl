@@ -1,0 +1,7 @@
+module bibble.Init;
+
+void Init() {}
+
+int Get67() {
+    return 67;
+}
