@@ -1,0 +1,8 @@
+module main;
+
+import bibble.init;
+
+int main() {
+    init::init();
+    return 0;
+}

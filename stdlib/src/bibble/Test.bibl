@@ -1,3 +1,0 @@
-module bibble.Test;
-
-void PrintInt(int x);
