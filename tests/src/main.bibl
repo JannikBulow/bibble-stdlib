@@ -1,8 +1,19 @@
 module main;
 
+import bibble.internal.file;
+
 import bibble.init;
 
 int main() {
     init::init();
+
+    handle in = file::stdin();
+    handle out = file::stdout();
+
+    while (true) {
+        byte b = file::read_byte(in);
+        file::write_byte(out, b);
+    }
+
     return 0;
 }

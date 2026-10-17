@@ -12,7 +12,7 @@ FetchContent_Declare(libos
 FetchContent_MakeAvailable(libos)
 
 set(SOURCES
-    src/io.c
+    src/file.c
 )
 
 set(HEADERS
@@ -27,12 +27,7 @@ target_include_directories(bibble_stdlib_native
         include
 )
 
-target_compile_features(bibble_stdlib_native PRIVATE c_std_11)
-
-set_target_properties(bibble_stdlib_native PROPERTIES
-    C_VISIBILITY_PRESET hidden
-    VISIBILITY_INLINES_HIDDEN YES
-)
+set_target_properties(bibble_stdlib_native PROPERTIES C_STANDARD 11)
 
 target_link_libraries(bibble_stdlib_native INTERFACE Bibble::BibbleVM-native-interface PUBLIC libos-shared)
 

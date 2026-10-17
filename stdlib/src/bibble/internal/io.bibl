@@ -1,3 +1,0 @@
-module bibble.internal.io;
-
-handle open_file(string path, string mode);
