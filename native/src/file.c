@@ -6,7 +6,7 @@
 
 #include <stdbool.h>
 
-VMReturnValue GetStdFile(os_stdfile stdfile) {
+static VMReturnValue GetStdFile(os_stdfile stdfile) {
     os_file* file;
     os_result res = os_file_get_stdfile(&file, stdfile);
     if (res != OS_OK) return BIBBLE_CLITERAL(VMReturnValue){false, {.h = NULL}};
