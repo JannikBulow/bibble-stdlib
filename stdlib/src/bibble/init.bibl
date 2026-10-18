@@ -1,4 +1,4 @@
 module bibble.init;
 
 // Replaced with an intrinsic at runtime. Haven't decided if this will be permanent
-void init();
+native void init();

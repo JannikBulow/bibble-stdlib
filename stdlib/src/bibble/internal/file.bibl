@@ -13,13 +13,20 @@ const uint DIRECT = 0x200;
 const uint SYNC = 0x400;
 const uint DELETE_ON_CLOSE = 0x800;
 
-handle stdin();
-handle stdout();
-handle stderr();
+native handle stdin();
+native handle stdout();
+native handle stderr();
 
-handle open(string path, uint flags);
-void close(handle file);
+native handle open(string path, uint flags);
+native void close(handle file);
 
-void write_byte(handle file, byte b);
+native void write_byte(handle file, byte b);
 
-byte read_byte(handle file);
+void write_string(handle file, string s) {
+    ulong len = s.length;
+    for (ulong i = 0; i < len; i += 1) {
+        write_byte(file, s[i]);
+    }
+}
+
+native byte read_byte(handle file);
