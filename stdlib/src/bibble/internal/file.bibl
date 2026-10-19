@@ -20,13 +20,11 @@ native handle stderr();
 native handle open(string path, uint flags);
 native void close(handle file);
 
-native void write_byte(handle file, byte b);
+native bool write_byte(handle file, byte b);
+native long write_bytes(handle file, byte[] bytes, ulong startIndex, long byteCount);
 
-void write_string(handle file, string s) {
-    ulong len = s.length;
-    for (ulong i = 0; i < len; i += 1) {
-        write_byte(file, s[i]);
-    }
+long write_bytes(handle file, byte[] bytes) {
+    return write_bytes(file, bytes, 0, bytes.length);
 }
 
 native byte read_byte(handle file);
