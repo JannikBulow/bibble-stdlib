@@ -22,9 +22,14 @@ native void close(handle file);
 
 native bool write_byte(handle file, byte b);
 native long write_bytes(handle file, byte[] bytes, ulong startIndex, long byteCount);
+native long write_string(handle file, string str, ulong startIndex, long byteCount); // write_bytes but with string
 
 long write_bytes(handle file, byte[] bytes) {
     return write_bytes(file, bytes, 0, bytes.length);
+}
+
+long write_string(handle file, string str) {
+    return write_string(file, str, 0, str.length);
 }
 
 native byte read_byte(handle file);

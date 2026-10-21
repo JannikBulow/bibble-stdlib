@@ -72,6 +72,31 @@ BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2internal_2file_write_1byt
     return BIBBLE_RETURN(VMULong, bytesWritten);
 }
 
+BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2internal_2file_write_1string(BibbleVM* vm, BibbleInterface* interface, VMValue* args) {
+    VMHandle fileHandle = args[0].h;
+    VMString str = args[1].obj;
+    VMULong startIndex = args[2].ul;
+    VMLong byteCount = args[3].l;
+
+    VMULong length = interface->GetStringLength(vm, str);
+    const char* chars = interface->GetStringChars(vm, str);
+
+    if (byteCount + startIndex > length) {
+        byteCount = (VMLong) length - startIndex;
+    }
+
+    os_file* file = fileHandle;
+    os_size bytesWritten;
+    os_result res = os_file_write(file, chars + startIndex, byteCount, &bytesWritten);
+    if (res != OS_OK) {
+        //TODO: error
+    }
+
+    interface->ReleaseStringChars(vm, str, chars);
+
+    return BIBBLE_RETURN(VMULong, bytesWritten);
+}
+
 BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2internal_2file_read_1byte(BibbleVM* vm, BibbleInterface* interface, VMValue* args) {
     VMHandle fileHandle = args[0].h;
 

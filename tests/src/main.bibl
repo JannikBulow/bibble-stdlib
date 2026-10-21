@@ -9,15 +9,7 @@ int main() {
 
     handle out = file::stdout();
 
-    byte[] text = new byte[6];
-    text[0] = 'H';
-    text[1] = 'e';
-    text[2] = 'l';
-    text[3] = 'l';
-    text[4] = 'o';
-    text[5] = '\n';
-
-    file::write_bytes(out, text);
+    file::write_string(out, "Hello World\n");
 
     return 0;
 }
