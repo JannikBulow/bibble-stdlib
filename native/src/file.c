@@ -13,27 +13,27 @@ static VMReturnValue GetStdFile(os_stdfile stdfile) {
     return BIBBLE_CLITERAL(VMReturnValue){false, {.h = file}};
 }
 
-BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2internal_2file_stdin(BibbleVM* vm, BibbleInterface* interface, VMValue* args) {
+BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2file_stdin(BibbleVM* vm, BibbleInterface* interface, VMValue* args) {
     return GetStdFile(OS_STDIN);
 }
 
-BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2internal_2file_stdout(BibbleVM* vm, BibbleInterface* interface, VMValue* args) {
+BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2file_stdout(BibbleVM* vm, BibbleInterface* interface, VMValue* args) {
     return GetStdFile(OS_STDOUT);
 }
 
-BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2internal_2file_stderr(BibbleVM* vm, BibbleInterface* interface, VMValue* args) {
+BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2file_stderr(BibbleVM* vm, BibbleInterface* interface, VMValue* args) {
     return GetStdFile(OS_STDERR);
 }
 
-BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2internal_2file_open(BibbleVM* vm, BibbleInterface* interface, VMValue* args) {
+BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2file_open(BibbleVM* vm, BibbleInterface* interface, VMValue* args) {
     return BIBBLE_RETURN(VMInt, 0);
 }
 
-BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2internal_2file_close(BibbleVM* vm, BibbleInterface* interface, VMValue* args) {
+BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2file_close(BibbleVM* vm, BibbleInterface* interface, VMValue* args) {
     return BIBBLE_RETURN(VMInt, 0);
 }
 
-BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2internal_2file_write_1byte(BibbleVM* vm, BibbleInterface* interface, VMValue* args) {
+BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2file_write_1byte(BibbleVM* vm, BibbleInterface* interface, VMValue* args) {
     VMHandle fileHandle = args[0].h;
     VMByte b = args[1].b;
 
@@ -47,7 +47,7 @@ BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2internal_2file_write_1byt
     return BIBBLE_RETURN(VMBool, bytesWritten == 1);
 }
 
-BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2internal_2file_write_1bytes(BibbleVM* vm, BibbleInterface* interface, VMValue* args) {
+BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2file_write_1bytes(BibbleVM* vm, BibbleInterface* interface, VMValue* args) {
     VMHandle fileHandle = args[0].h;
     VMArray bytesArr = args[1].obj;
     VMULong startIndex = args[2].ul;
@@ -72,7 +72,7 @@ BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2internal_2file_write_1byt
     return BIBBLE_RETURN(VMULong, bytesWritten);
 }
 
-BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2internal_2file_write_1string(BibbleVM* vm, BibbleInterface* interface, VMValue* args) {
+BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2file_write_1string(BibbleVM* vm, BibbleInterface* interface, VMValue* args) {
     VMHandle fileHandle = args[0].h;
     VMString str = args[1].obj;
     VMULong startIndex = args[2].ul;
@@ -97,7 +97,7 @@ BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2internal_2file_write_1str
     return BIBBLE_RETURN(VMULong, bytesWritten);
 }
 
-BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2internal_2file_read_1byte(BibbleVM* vm, BibbleInterface* interface, VMValue* args) {
+BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2file_read_1byte(BibbleVM* vm, BibbleInterface* interface, VMValue* args) {
     VMHandle fileHandle = args[0].h;
 
     os_file* file = fileHandle;

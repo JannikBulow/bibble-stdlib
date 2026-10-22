@@ -1,6 +1,6 @@
 module main;
 
-import bibble.internal.file;
+import bibble.file;
 
 import bibble.init;
 

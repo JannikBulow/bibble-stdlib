@@ -1,4 +1,4 @@
-module bibble.internal.file;
+module bibble.file;
 
 const uint READ = 0x1;
 const uint WRITE = 0x2;
