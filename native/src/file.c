@@ -109,3 +109,60 @@ BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2file_read_1byte(BibbleVM*
 
     return BIBBLE_RETURN(VMByte, b);
 }
+
+BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2file_read_1bytes(BibbleVM* vm, BibbleInterface* interface, VMValue* args) {
+    VMHandle fileHandle = args[0].h;
+    VMULong byteCount = args[1].ul;
+
+    VMArray bytesArray = interface->NewByteArray(vm, byteCount);
+    VMByte* bytes = interface->GetByteArrayElements(vm, bytesArray);
+
+    os_file* file = fileHandle;
+    os_result res = os_file_read(file, bytes, sizeof(VMByte) * byteCount, NULL);
+    if (res != OS_OK) {
+        //TODO: error
+    }
+
+    interface->ReleaseByteArrayElements(vm, bytesArray, bytes);
+
+    return BIBBLE_CLITERAL(VMReturnValue){true, {.obj = bytesArray}};
+}
+
+BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2file_seek(BibbleVM* vm, BibbleInterface* interface, VMValue* args) {
+    VMHandle fileHandle = args[0].h;
+    VMLong offset = args[1].l;
+    VMUInt origin = args[2].ui;
+
+    os_file* file = fileHandle;
+    os_result res = os_file_seek(file, offset, origin);
+    if (res != OS_OK) {
+        //TODO: error
+    }
+
+    return BIBBLE_RETURN(VMInt, 0);
+}
+
+BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2file_tell(BibbleVM* vm, BibbleInterface* interface, VMValue* args) {
+    VMHandle fileHandle = args[0].h;
+
+    os_file* file = fileHandle;
+    os_size position;
+    os_result res = os_file_tell(file, &position);
+    if (res != OS_OK) {
+        //TODO: error
+    }
+
+    return BIBBLE_RETURN(VMULong, position);
+}
+
+BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2file_flush(BibbleVM* vm, BibbleInterface* interface, VMValue* args) {
+    VMHandle fileHandle = args[0].h;
+
+    os_file* file = fileHandle;
+    os_result res = os_file_flush(file);
+    if (res != OS_OK) {
+        //TODO: error
+    }
+
+    return BIBBLE_RETURN(VMInt, 0);
+}

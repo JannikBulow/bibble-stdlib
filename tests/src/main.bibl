@@ -1,15 +1,17 @@
 module main;
 
 import bibble.file;
-
 import bibble.init;
 
 int main() {
     init::init();
 
+    handle in = file::stdin();
     handle out = file::stdout();
 
-    file::write_string(out, "Hello World\n");
+    byte[] bytes = file::read_bytes(in, 5);
+
+    file::write_bytes(out, bytes);
 
     return 0;
 }

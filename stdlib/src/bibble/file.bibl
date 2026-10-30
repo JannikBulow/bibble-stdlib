@@ -13,6 +13,10 @@ const uint DIRECT = 0x200;
 const uint SYNC = 0x400;
 const uint DELETE_ON_CLOSE = 0x800;
 
+const uint SEEK_BEGIN = 0;
+const uint SEEK_CURRENT = 1;
+const uint SEEK_END = 2;
+
 native handle stdin();
 native handle stdout();
 native handle stderr();
@@ -33,3 +37,10 @@ long write_string(handle file, string str) {
 }
 
 native byte read_byte(handle file);
+native byte[] read_bytes(handle file, ulong byteCount);
+native string read_string(handle file, ulong byteCount); //TODO: maybe replace with codepoint count considering strings are utf8 primitives. or just don't include read_string here
+
+native void seek(handle file, long offset, uint origin);
+native ulong tell(handle file);
+
+native void flush(handle file);
