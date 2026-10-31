@@ -107,7 +107,7 @@ BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2file_read_1byte(BibbleVM*
         //TODO: error
     }
 
-    return BIBBLE_RETURN(VMByte, b);
+    return BIBBLE_RETURN(VMInt, b);
 }
 
 BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2file_read_1bytes(BibbleVM* vm, BibbleInterface* interface, VMValue* args) {
@@ -160,6 +160,32 @@ BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2file_flush(BibbleVM* vm, 
 
     os_file* file = fileHandle;
     os_result res = os_file_flush(file);
+    if (res != OS_OK) {
+        //TODO: error
+    }
+
+    return BIBBLE_RETURN(VMInt, 0);
+}
+
+BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2file_size(BibbleVM* vm, BibbleInterface* interface, VMValue* args) {
+    VMHandle fileHandle = args[0].h;
+
+    os_file* file = fileHandle;
+    os_size size;
+    os_result res = os_file_getsize(file, &size);
+    if (res != OS_OK) {
+        //TODO: error
+    }
+
+    return BIBBLE_RETURN(VMULong, size);
+}
+
+BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2file_resize(BibbleVM* vm, BibbleInterface* interface, VMValue* args) {
+    VMHandle fileHandle = args[0].h;
+    VMULong newSize = args[1].ul;
+
+    os_file* file = fileHandle;
+    os_result res = os_file_resize(file, newSize);
     if (res != OS_OK) {
         //TODO: error
     }

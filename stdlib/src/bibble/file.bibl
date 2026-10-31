@@ -17,6 +17,8 @@ const uint SEEK_BEGIN = 0;
 const uint SEEK_CURRENT = 1;
 const uint SEEK_END = 2;
 
+const uint EOF = -1;
+
 native handle stdin();
 native handle stdout();
 native handle stderr();
@@ -36,7 +38,7 @@ long write_string(handle file, string str) {
     return write_string(file, str, 0, str.length);
 }
 
-native byte read_byte(handle file);
+native int read_byte(handle file); // returns a value between 0 and 255 on success, EOF (-1) on eof and -2 on error
 native byte[] read_bytes(handle file, ulong byteCount);
 native string read_string(handle file, ulong byteCount);
 
@@ -44,3 +46,6 @@ native void seek(handle file, long offset, uint origin);
 native ulong tell(handle file);
 
 native void flush(handle file);
+
+native ulong size(handle file);
+native void resize(handle file, ulong newSize);
