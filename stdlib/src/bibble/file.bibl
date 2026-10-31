@@ -38,7 +38,7 @@ long write_string(handle file, string str) {
 
 native byte read_byte(handle file);
 native byte[] read_bytes(handle file, ulong byteCount);
-native string read_string(handle file, ulong byteCount); //TODO: maybe replace with codepoint count considering strings are utf8 primitives. or just don't include read_string here
+native string read_string(handle file, ulong byteCount);
 
 native void seek(handle file, long offset, uint origin);
 native ulong tell(handle file);
