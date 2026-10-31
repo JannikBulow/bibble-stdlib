@@ -24,7 +24,7 @@ native handle stderr();
 native handle open(string path, uint flags);
 native void close(handle file);
 
-native bool write_byte(handle file, byte b);
+native long write_byte(handle file, byte b);
 native long write_bytes(handle file, byte[] bytes, ulong startIndex, long byteCount);
 native long write_string(handle file, string str, ulong startIndex, long byteCount); // write_bytes but with string
 

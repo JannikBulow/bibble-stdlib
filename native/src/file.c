@@ -44,7 +44,7 @@ BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2file_write_1byte(BibbleVM
         //TODO: error
     }
 
-    return BIBBLE_RETURN(VMBool, bytesWritten == 1);
+    return BIBBLE_RETURN(VMLong, bytesWritten);
 }
 
 BIBBLE_EXPORT VMReturnValue BIBBLE_CALL Bibble_bibble_2file_write_1bytes(BibbleVM* vm, BibbleInterface* interface, VMValue* args) {
