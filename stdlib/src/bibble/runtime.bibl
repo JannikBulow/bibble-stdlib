@@ -1,0 +1,10 @@
+module bibble.runtime;
+
+// small design note so i don't forget it when i write docs:
+// all functions in bibble.runtime must be provided directly by the vm, not by the stdlib plugin
+
+native string get_property(string key);
+native void set_property(string key, string value);
+
+@noreturn
+native void exit(int status);
