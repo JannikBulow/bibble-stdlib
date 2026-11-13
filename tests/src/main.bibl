@@ -2,16 +2,20 @@ module main;
 
 import bibble.file;
 import bibble.init;
+import bibble.runtime;
 
 int main() {
     init::init();
 
-    handle in = file::stdin();
     handle out = file::stdout();
 
-    byte[] bytes = file::read_bytes(in, 5);
+    runtime::set_property("test", "hey world\n");
 
-    file::write_bytes(out, bytes);
+    string value = runtime::get_property("test");
+
+    file::write_string(out, value);
+
+    runtime::exit(67);
 
     return 0;
 }
